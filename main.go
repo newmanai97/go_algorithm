@@ -6,9 +6,7 @@ import (
 )
 
 func main() {
-	array := []byte{'H', 'a', 'n', 'n', 'a', 'h'}
-	question.ReverseString(array)
-
-	str := string(array[:])
-	fmt.Println(str)
+	array := "abcd"
+	result := question.ReverseStr(array, 2)
+	fmt.Println(result)
 }
