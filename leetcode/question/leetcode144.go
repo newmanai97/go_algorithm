@@ -2,6 +2,7 @@ package question
 
 import "suanfa/leetcode/structure"
 
+// 递归方法
 func PreorderTraversal(root *structure.TreeNode) []int {
 	var result []int
 	var traversal func(node *structure.TreeNode)
@@ -16,4 +17,30 @@ func PreorderTraversal(root *structure.TreeNode) []int {
 	traversal(root)
 	return result
 
+}
+
+// 迭代方法
+func PreorderTraversal2(root *structure.TreeNode) []int {
+	var result []int
+
+	stack := make([]*structure.TreeNode, 0)
+	if root == nil {
+		return result
+	}
+	stack = append(stack, root)
+
+	for len(stack) > 0 {
+		node := stack[len(stack)-1]
+		result = append(result, node.Val)
+		stack = stack[:len(stack)-1]
+
+		if node.Right != nil {
+			stack = append(stack, node.Right)
+		}
+
+		if node.Left != nil {
+			stack = append(stack, node.Left)
+		}
+	}
+	return result
 }
