@@ -51,3 +51,36 @@ func PostorderTraversal2(root *structure.TreeNode) []int {
 
 	return result
 }
+
+// 统一迭代法
+func PostorderTraversal3(root *structure.TreeNode) []int {
+	var result []int
+
+	stack := make([]*structure.TreeNode, 0)
+	if root == nil {
+		return result
+	}
+	stack = append(stack, root)
+
+	for len(stack) > 0 {
+		node := stack[len(stack)-1]
+		stack = stack[:len(stack)-1]
+		if node != nil {
+			stack = append(stack, node)
+			stack = append(stack, nil)
+			if node.Right != nil {
+				stack = append(stack, node.Right)
+			}
+
+			if node.Left != nil {
+				stack = append(stack, node.Left)
+			}
+
+		} else {
+			res := stack[len(stack)-1]
+			stack = stack[:len(stack)-1]
+			result = append(result, res.Val)
+		}
+	}
+	return result
+}
