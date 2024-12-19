@@ -5,7 +5,7 @@ import (
 	"suanfa/leetcode/structure"
 )
 
-func LevelOrder(root *structure.TreeNode) [][]int {
+func levelOrder(root *structure.Node) [][]int {
 	result := [][]int{}
 	if root == nil {
 		return result
@@ -17,12 +17,11 @@ func LevelOrder(root *structure.TreeNode) [][]int {
 		res := []int{}
 		depth := stack.Len()
 		for i := 0; i < depth; i++ {
-			node := stack.Remove(stack.Front()).(*structure.TreeNode)
-			if node.Left != nil {
-				stack.PushBack(node.Left)
-			}
-			if node.Right != nil {
-				stack.PushBack(node.Right)
+			node := stack.Remove(stack.Front()).(*structure.Node)
+			for _, n := range node.Children {
+				if n != nil {
+					stack.PushBack(n)
+				}
 			}
 			res = append(res, node.Val)
 		}

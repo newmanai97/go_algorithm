@@ -5,28 +5,32 @@ import (
 	"suanfa/leetcode/structure"
 )
 
-func LevelOrder(root *structure.TreeNode) [][]int {
-	result := [][]int{}
+func Connect(root *structure.Node2) *structure.Node2 {
 	if root == nil {
-		return result
+		return root
 	}
 	stack := list.New()
 	stack.PushBack(root)
 
 	for stack.Len() > 0 {
-		res := []int{}
+		var pre *structure.Node2
 		depth := stack.Len()
 		for i := 0; i < depth; i++ {
-			node := stack.Remove(stack.Front()).(*structure.TreeNode)
+			node := stack.Remove(stack.Front()).(*structure.Node2)
 			if node.Left != nil {
 				stack.PushBack(node.Left)
 			}
 			if node.Right != nil {
 				stack.PushBack(node.Right)
 			}
-			res = append(res, node.Val)
+			if pre == nil {
+				pre = node
+				continue
+			}
+			pre.Next = node
+			pre = node
 		}
-		result = append(result, res)
+
 	}
-	return result
+	return root
 }
