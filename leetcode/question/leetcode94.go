@@ -3,10 +3,10 @@ package question
 import "suanfa/leetcode/structure"
 
 // 递归法
-func InorderTraversal(root *structure.TreeNode) []int {
+func InorderTraversal(root *TreeNode) []int {
 	var result []int
-	var traversal func(node *structure.TreeNode)
-	traversal = func(node *structure.TreeNode) {
+	var traversal func(node *TreeNode)
+	traversal = func(node *TreeNode) {
 		if node == nil {
 			return
 		}
