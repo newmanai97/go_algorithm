@@ -1,12 +1,7 @@
 package main
 
-import (
-	"fmt"
-	"suanfa/leetcode/question"
-)
+import "suanfa/leetcode/question"
 
 func main() {
-	array := "abcd"
-	result := question.ReverseStr(array, 2)
-	fmt.Println(result)
+	question.SpiralOrder([][]int{{1, 2, 3}})
 }
